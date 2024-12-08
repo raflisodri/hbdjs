@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Age</title>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@9.1.1/dist/js/shepherd.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@9.1.1/dist/css/shepherd.css" />
+    <style>
+        /* Global Styling */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Fira Code', monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+        .code-editor {
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .file-name {
+            color: #d4d4d4;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        .file-name img {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+        .run-btn {
+            background: #0e639c;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .run-btn:hover {
+            background: #1177cc;
+        }
+        pre {
+            background: #1e1e1e;
+            border-radius: 4px;
+            margin: 0;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .output-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 16px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .output-container h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #dcdcaa;
+        }
+        .typed-text {
+            color: #00ff00;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Syntax Highlighting */
+        .keyword { color: #569cd6; }
+        .variable { color: #9cdcfe; }
+        .string { color: #ce9178; }
+        .number { color: #b5cea8; }
+        .function { color: #dcdcaa; }
+        .operator { color: #d4d4d4; }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .code-editor, .output-container {
+                padding: 12px;
+            }
+            .typed-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header File Name -->
+        <div class="code-editor">
+            <div class="header">
+                <span class="file-name">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JS Icon">
+                    YourDay.js
+                </span>
+                <button class="run-btn">▶ Run</button>
+            </div>
+
+            <!-- Code Area -->
+            <pre>
+<code>
+<span class="keyword">const</span> <span class="variable">dateOfBirth</span> <span class="operator">=</span> <span class="string">'2005-12-14'</span>;
+<span class="keyword">let</span> <span class="variable">now</span> <span class="operator">=</span> <span class="function">new</span> <span class="function">Date</span>();
+
+<span class="keyword">const</span> <span class="variable">isTodayBirthday</span> <span class="operator">=</span> 
+    <span class="variable">now</span>.getDate() <span class="operator">===</span> <span class="function">new</span> <span class="function">Date</span>(<span class="variable">dateOfBirth</span>).getDate() 
+    <span class="operator">&amp;&amp;</span> 
+    <span class="variable">now</span>.getMonth() <span class="operator">===</span> <span class="function">new</span> <span class="function">Date</span>(<span class="variable">dateOfBirth</span>).getMonth();
+
+<span class="keyword">if</span> (<span class="variable">isTodayBirthday</span>) {
+    <span class="variable">console</span>.<span class="function">log</span>(<span class="string">'Happy Birthday! 🎉🎂'</span>);
+}
+</code>
+            </pre>
+        </div>
+
+        <!-- Output Area -->
+        <div class="output-container">
+            <h2>Output:</h2>
+            <div class="typed-text"></div>
+        </div>
+    </div>
+
+    <script>
+        // Shepherd.js Tour Guide
+        const tour = new Shepherd.Tour({
+            useModalOverlay: true,
+        });
+
+        tour.addStep({
+            title: 'Welcome to RafliAssistant',
+            text: 'This is a JavaScript to calculate if today is your birthday. Let\'s click "Run" to see it in action!',
+            attachTo: { element: '.run-btn', on: 'bottom' },
+            buttons: [
+                {
+                    text: 'Got it!',
+                    action: tour.next,
+                },
+            ],
+        });
+
+        tour.start();
+
+        // Run Button Event
+        document.querySelector('.run-btn').addEventListener('click', () => {
+            const dateOfBirth = '2005-12-14';
+            const now = new Date();
+
+            const isTodayBirthday = 
+                now.getDate() === new Date(dateOfBirth).getDate() &&
+                now.getMonth() === new Date(dateOfBirth).getMonth();
+
+            const typedTextDiv = document.querySelector('.typed-text');
+
+            if (isTodayBirthday) {
+                // Typed.js for birthday
+                new Typed('.typed-text', {
+                    strings: [
+                        "🎉 Happy Birthday to You! 🎂",
+                        "May this year bring you endless happiness, good health, and success! 🌟",
+                        "Celebrate your special day with joy, laughter, and love from those who matter most! 🥳",
+                        "Remember, you are amazing, and the world is a better place with you in it! ❤️",
+                        "Wishing you a year full of surprises, adventures, and unforgettable memories! 🎁"
+                    ],
+                    typeSpeed: 50,
+                    backSpeed: 25,
+                    loop: true,
+                });
+            } else {
+                // Typed.js for not birthday
+                new Typed('.typed-text', {
+                    strings: [
+                        "It's not your birthday today. 🎂",
+                        "But it's still a great day! 🌟",
+                        "Keep smiling, and make the most out of every moment! 😊",
+                        "Remember, every day is a gift, so cherish it! 🎁"
+                    ],
+                    typeSpeed: 50,
+                    backSpeed: 25,
+                    loop: true,
+                });
+            }
+        });
+    </script>
+</body>
+</html>
