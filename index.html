@@ -143,6 +143,7 @@
     </div>
 
     <script>
+        const arr = [];
         // Shepherd.js Tour Guide
         const tour = new Shepherd.Tour({
             useModalOverlay: true,
@@ -164,46 +165,54 @@
 
         document.addEventListener('DOMContentLoaded', () => {
         // Run Button Event
-        document.querySelector('.run-btn').addEventListener('click', () => {
-            this.disabled = true
-            const dateOfBirth = '2005-12-14';
-            const now = new Date();
+            document.querySelector('.run-btn').addEventListener('click', () => {
+                console.log(this);
+                
+                if(arr.length > 0) {
+                    this.disabled = true
+                    return
+                } else {
+                    arr.push(1)
+                }
+                
+                const dateOfBirth = '2005-12-14';
+                const now = new Date();
 
-            const isTodayBirthday = 
-                now.getDate() === new Date(dateOfBirth).getDate() &&
-                now.getMonth() === new Date(dateOfBirth).getMonth();
+                const isTodayBirthday = 
+                    now.getDate() === new Date(dateOfBirth).getDate() &&
+                    now.getMonth() === new Date(dateOfBirth).getMonth();
 
-            const typedTextDiv = document.querySelector('.typed-text');
+                const typedTextDiv = document.querySelector('.typed-text');
 
-            if (isTodayBirthday) {
-                // Typed.js for birthday
-                new Typed('.typed-text', {
-                    strings: [
-                        "🎉 Happy Birthday to You! 🎂",
-                        "May this year bring you endless happiness, good health, and success! 🌟",
-                        "Celebrate your special day with joy, laughter, and love from those who matter most! 🥳",
-                        "Remember, you are amazing, and the world is a better place with you in it! ❤️",
-                        "Wishing you a year full of surprises, adventures, and unforgettable memories! 🎁"
-                    ],
-                    typeSpeed: 50,
-                    backSpeed: 25,
-                    loop: true,
-                });
-            } else {
-                // Typed.js for not birthday
-                new Typed('.typed-text', {
-                    strings: [
-                        "It's not your birthday today. 🎂",
-                        "But it's still a great day! 🌟",
-                        "Keep smiling, and make the most out of every moment! 😊",
-                        "Remember, every day is a gift, so cherish it! 🎁"
-                    ],
-                    typeSpeed: 50,
-                    backSpeed: 25,
-                    loop: true,
-                });
-            }
-        });
+                if (isTodayBirthday) {
+                    // Typed.js for birthday
+                    new Typed('.typed-text', {
+                        strings: [
+                            "🎉 Happy Birthday to You! 🎂",
+                            "May this year bring you endless happiness, good health, and success! 🌟",
+                            "Celebrate your special day with joy, laughter, and love from those who matter most! 🥳",
+                            "Remember, you are amazing, and the world is a better place with you in it! ❤️",
+                            "Wishing you a year full of surprises, adventures, and unforgettable memories! 🎁"
+                        ],
+                        typeSpeed: 50,
+                        backSpeed: 25,
+                        loop: true,
+                    });
+                } else {
+                    // Typed.js for not birthday
+                    new Typed('.typed-text', {
+                        strings: [
+                            "It's not your birthday today. 🎂",
+                            "But it's still a great day! 🌟",
+                            "Keep smiling, and make the most out of every moment! 😊",
+                            "Remember, every day is a gift, so cherish it! 🎁"
+                        ],
+                        typeSpeed: 50,
+                        backSpeed: 25,
+                        loop: true,
+                    });
+                }
+            });
         });
     </script>
 </body>
