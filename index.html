@@ -162,6 +162,7 @@
 
         tour.start();
 
+        document.addEventListener('DOMContentLoaded', () => {
         // Run Button Event
         document.querySelector('.run-btn').addEventListener('click', () => {
             this.disabled = true
@@ -202,6 +203,7 @@
                     loop: true,
                 });
             }
+        });
         });
     </script>
 </body>
